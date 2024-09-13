@@ -1,4 +1,5 @@
 'use strict';
+const {Validator } = require("sequelize"); //Attempt to fix bug, works
 const {
   Model
 } = require('sequelize');

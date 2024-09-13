@@ -8,13 +8,12 @@ const cookieParser = require('cookie-parser');
 
 const { environment } = require('./config');
 const isProduction = environment === 'production';
+const routes = require('./routes');
+const { ValidationError } = require('sequelize'); //Sequelize Error-Handler
 
 const app = express();
 
-const routes = require('./routes');
 
-
-const { ValidationError } = require('sequelize'); //Sequelize Error-Handler
 
 app.use(morgan('dev'));
 
@@ -58,6 +57,8 @@ app.use((_req, _res, next) => {
 });
 
 // Process sequelize errors
+
+
 app.use((err, _req, _res, next) => {
   // check if error is a Sequelize error:
   if (err instanceof ValidationError) {
